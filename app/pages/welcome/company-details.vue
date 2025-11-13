@@ -6,9 +6,9 @@ definePageMeta({
 
 <template>
   <div>
-    <h1>Faisons connaissance</h1>
+    <h1>Créez votre espace de travail</h1>
 
-    <NuxtLink to="/welcome/company-details" class="btn-continue">
+    <NuxtLink to="/welcome/get-to-know" class="btn-continue">
       Continuer
     </NuxtLink>
   </div>

@@ -6,28 +6,29 @@ definePageMeta({
 
 <template>
   <div>
-    <h1>Faisons connaissance</h1>
+    <h1>Pour mieux vous connaître</h1>
 
-    <NuxtLink to="/welcome/company-details" class="btn-continue">
-      Continuer
-    </NuxtLink>
+    <button class="btn-finish">
+      Terminer
+    </button>
   </div>
 </template>
 
 <style scoped>
-.btn-continue {
+.btn-finish {
   display: inline-block;
   margin-top: 2rem;
   padding: 0.75rem 2rem;
-  background: #3B82F6;
+  background: #10B981;
   color: white;
   border-radius: 0.5rem;
-  text-decoration: none;
+  border: none;
   font-weight: 600;
+  cursor: pointer;
   transition: background 0.2s;
 }
 
-.btn-continue:hover {
-  background: #2563EB;
+.btn-finish:hover {
+  background: #059669;
 }
 </style>
