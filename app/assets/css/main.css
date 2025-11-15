@@ -1,5 +1,25 @@
 @import "tailwindcss";
+@import "@nuxt/ui";
 
-body{
+@theme static {
+    --color-blue-50: #b4d5fd;
+    --color-blue-100: #8fc2f1;
+    --color-blue-200: #6cb1e6;
+    --color-blue-300: #4ca8e2;
+    --color-blue-400: #2e9fe6;
+    --color-blue-500: #0072FF;
+    --color-blue-600: #0052CC;
+    --color-blue-700: #003A8C;
+    --color-blue-800: #002C66;
+    --color-blue-900: #001A33;
+    --color-blue-950: #00141E;
+}
+
+* {
+    font-family: 'DM Sans', sans-serif;
+}
+
+body {
     background-color: #F9FAFB;
+    font-family: 'DM Sans', sans-serif;
 }

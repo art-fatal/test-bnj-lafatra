@@ -1,38 +1,71 @@
 <script setup lang="ts">
-import AppHeader from "~/components/AppHeader.vue";
+import type {StepperItem} from '@nuxt/ui'
 
 const route = useRoute()
+const router = useRouter()
 
-// Détermine l'étape actuelle basée sur la route
+const items = ref<StepperItem[]>([
+  {
+    title: 'Faisons connaissance',
+    path: '/welcome/personal-details',
+  },
+  {
+    title: 'Creez votre espace de travail',
+    path: '/welcome/company-details',
+  },
+  {
+    title: 'Pour mieux vous connaître',
+    path: '/welcome/get-to-know',
+  }
+])
+
 const currentStep = computed(() => {
-  const path = route.path
-  if (path.includes('personal-details')) return 1
-  if (path.includes('company-details')) return 2
-  if (path.includes('get-to-know')) return 3
-  return 1
+  const currentPath = route.path
+  const index = items.value.findIndex(item => item.path === currentPath)
+  return index >= 0 ? index : 0
 })
+
+const handleStepClick = (index: number) => {
+  const item = items.value[index]
+  if (item.path) {
+    router.push(item.path)
+  }
+}
 </script>
 
 <template>
-  <div class="h-screen">
+  <div class="h-screen flex flex-col">
     <AppHeader/>
 
-    <Stepper :current-step="currentStep" />
+    <div class="section">
+      <UContainer class="!px-32 py-16">
+        <div class="px-20 py-10 border-1 border-gray-200 flex flex-col rounded-2xl bg-white gap-4">
+          <UStepper
+              :model-value="currentStep"
+              :items="items"
+              size="xs"
+              :ui="{
+                separator: 'start-[calc(50%+32px)] end-[calc(-50%+32px)]',
+              }"
+              @update:model-value="handleStepClick"
+          />
 
-    <main class="main-content px-10xl py-7xl">
-      <slot />
-    </main>
+        <div class="flex flex-row gap-20 items-center">
+          <div class="w-full">
+            <slot/>
+          </div>
+          <div class="w-full h-[480px]">
+            <Preview />
+          </div>
+        </div>
+        </div>
+      </UContainer>
+    </div>
   </div>
 </template>
 
 <style scoped>
-
-.main-content {
-  width: 1280px;
-  max-width: 1280px;
-  height: 750px;
-  margin: auto;
-  gap: 48px;
-  opacity: 1;
+.section {
+  @apply w-full h-full;
 }
 </style>

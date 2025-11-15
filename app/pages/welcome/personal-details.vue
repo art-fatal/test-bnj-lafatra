@@ -5,13 +5,11 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
     <h1>Faisons connaissance</h1>
 
     <NuxtLink to="/welcome/company-details" class="btn-continue">
       Continuer
     </NuxtLink>
-  </div>
 </template>
 
 <style scoped>
