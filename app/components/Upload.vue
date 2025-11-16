@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { getInitials } from '~/utils/initials'
+
 interface Props {
   modelValue?: null | File | File[]
   fullName?: string
-  maxSize?: number // en MB
+  maxSize?: number
   useIcon?: string
-  useSvg?: string // Chemin vers un SVG personnalisé
+  useSvg?: string
   roundedClass?: string
   description?: string
 }
@@ -38,22 +40,13 @@ const avatar = computed({
   }
 })
 
-const initials = computed(() => {
-  const fullName = props.fullName?.trim()
-  if (!fullName || fullName === '') return 'UK'
-
-  const names = fullName.split(' ')
-  if (names.length === 1) {
-    return names[0]?.substring(0, 2).toUpperCase() || 'UK'
-  }
-  return ((names[0]?.[0] || '') + (names[names.length - 1]?.[0] || '')).toUpperCase()
-})
+const initials = computed(() => getInitials(props.fullName))
 
 </script>
 
 <template>
   <UFileUpload v-slot="{ open, removeFile }" v-model="avatar" accept="image/*">
-    <div class="flex flex-wrap items-center gap-8">
+    <div class="flex flex-row items-center gap-8">
       <UAvatar
           size="3xl"
           :src="avatar ? createObjectUrl(avatar) : undefined"
@@ -68,8 +61,7 @@ const initials = computed(() => {
           <img :src="useSvg" alt="Icon" class="w-9 h-9" />
         </template>
       </UAvatar>
-      <div class="flex flex-col items-start justify-start
-       gap-2">
+      <div class="flex flex-col items-start justify-start gap-2">
         <div class="flex flex-row items-center justify-between gap-2">
           <UButton
               :label="avatar ? 'Modifier la photo' : 'Ajouter une photo'"
