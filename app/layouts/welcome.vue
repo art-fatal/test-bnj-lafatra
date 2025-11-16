@@ -34,7 +34,7 @@ const handleStepClick = (index: number) => {
 </script>
 
 <template>
-  <div class="h-screen flex flex-col">
+  <div class="h-screen flex flex-col relative">
     <AppHeader/>
 
     <div class="section">
@@ -43,9 +43,11 @@ const handleStepClick = (index: number) => {
           <UStepper
               :model-value="currentStep"
               :items="items"
+              :disabled="true"
               size="xs"
               :ui="{
                 separator: 'start-[calc(50%+32px)] end-[calc(-50%+32px)]',
+                title: 'font-sans',
               }"
               @update:model-value="handleStepClick"
           />
@@ -67,5 +69,7 @@ const handleStepClick = (index: number) => {
 <style scoped>
 .section {
   @apply w-full h-full;
+  position: absolute;
+  top: 48px;
 }
 </style>

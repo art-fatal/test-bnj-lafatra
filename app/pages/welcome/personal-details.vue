@@ -5,10 +5,8 @@ import {useOnboardingStore} from '~/stores/onboarding'
 import * as z from "zod";
 import type { FormSubmitEvent } from '@nuxt/ui'
 
-const MAX_FILE_SIZE = 2 * 1024 * 1024 // 2MB
-const MIN_DIMENSIONS = { width: 200, height: 200 }
-const MAX_DIMENSIONS = { width: 4096, height: 4096 }
-const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png']
 
 definePageMeta({
   layout: 'welcome'
@@ -24,51 +22,27 @@ const formatBytes = (bytes: number, decimals = 2) => {
 }
 
 const schema = z.object({
-  avatar: z
-      .instanceof(File, {
-        message: 'Please select an image file.'
-      })
+  email: z.email('Veuillez entrer une adresse email valide'),
+  photo: z.union([
+    z.instanceof(File)
       .refine((file) => file.size <= MAX_FILE_SIZE, {
         message: `The image is too large. Please choose an image smaller than ${formatBytes(MAX_FILE_SIZE)}.`
       })
       .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
-        message: 'Please upload a valid image file (JPEG, PNG, or WebP).'
-      })
-      .refine(
-          (file) =>
-              new Promise((resolve) => {
-                const reader = new FileReader()
-                reader.onload = (e) => {
-                  const img = new Image()
-                  img.onload = () => {
-                    const meetsDimensions =
-                        img.width >= MIN_DIMENSIONS.width &&
-                        img.height >= MIN_DIMENSIONS.height &&
-                        img.width <= MAX_DIMENSIONS.width &&
-                        img.height <= MAX_DIMENSIONS.height
-                    resolve(meetsDimensions)
-                  }
-                  img.src = e.target?.result as string
-                }
-                reader.readAsDataURL(file)
-              }),
-          {
-            message: `The image dimensions are invalid. Please upload an image between ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} and ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`
-          }
-      )
+        message: 'Please upload a valid image file (JPEG, PNG).'
+      }),
+    z.array(z.instanceof(File)),
+    z.null()
+  ]).optional()
 })
 
-type schema = z.output<typeof schema>
+type Schema = z.output<typeof schema>
 
 const onboardingStore = useOnboardingStore()
 const {personalDetails} = storeToRefs(onboardingStore)
-const state = reactive<Partial<schema>>({
-  avatar: undefined
-})
 
-
-async function onSubmit(event: FormSubmitEvent<schema>) {
-  console.log(event.data)
+async function onSubmit() {
+  navigateTo('/welcome/company-details')
 }
 </script>
 
@@ -76,23 +50,22 @@ async function onSubmit(event: FormSubmitEvent<schema>) {
   <UPageCard
       title="Faisons connaissance"
       variant="naked"
-      :ui="{
-        container: 'gap-6',
-        title: 'text-2xl font-bold text-gray-900',
-      }"
   >
-    <UForm :schema="schema" :state="state" class="space-y-6" @submit="onSubmit">
-      <UFormField label="Photo de profil" class="font-poppins">
-        <Upload v-model="personalDetails.photo"
-                :full-name="`${personalDetails.firstName} ${personalDetails.lastName}`"/>
+    <UForm :schema="schema" :state="personalDetails" class="space-y-6" @submit="onSubmit">
+      <UFormField label="Photo de profil" class="font-poppins" name="photo">
+        <Upload
+            v-model="personalDetails.photo"
+            :full-name="`${personalDetails.firstName} ${personalDetails.lastName}`"
+            description="au format *.png, *.jpeg, max 5mo"
+        />
       </UFormField>
-      <UFormField label="Prénom">
+      <UFormField label="Prénom" name="firstName">
         <UInput v-model="personalDetails.firstName" placeholder="Prénom"/>
       </UFormField>
-      <UFormField label="Nom">
+      <UFormField label="Nom" name="lastName">
         <UInput v-model="personalDetails.lastName" placeholder="Nom"/>
       </UFormField>
-      <UFormField label="Adresse email">
+      <UFormField label="Adresse email" name="email">
         <UInput
             v-model="personalDetails.email"
             type="email"
@@ -100,7 +73,7 @@ async function onSubmit(event: FormSubmitEvent<schema>) {
             icon="i-lucide-mail"
         />
       </UFormField>
-      <UButton to="/welcome/company-details" size="lg" class="w-full">
+      <UButton type="submit" size="lg" class="w-full cursor-pointer">
         Continuer
       </UButton>
     </UForm>

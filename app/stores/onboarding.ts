@@ -1,81 +1,93 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
 interface PersonalDetails {
-  photo: string
-  firstName: string
-  lastName: string
-  email: string
+    photo: null | File | File[]
+    firstName: string
+    lastName: string
+    email: string
 }
 
 interface CompanyDetails {
-  companyName: string
-  industry: string
-  size: string
+    companyName: string
+    description: string
+    webSite: string
+    address: string
+    logo: null | File | File[]
+    activity: string
 }
 
 interface OnboardingState {
-  personalDetails: PersonalDetails
-  companyDetails: CompanyDetails
+    personalDetails: PersonalDetails
+    companyDetails: CompanyDetails
 }
 
 export const useOnboardingStore = defineStore('onboarding', {
-  state: (): OnboardingState => ({
-    personalDetails: {
-      photo: '',
-      firstName: '',
-      lastName: '',
-      email: ''
+    state: (): OnboardingState => ({
+        personalDetails: {
+            photo: null,
+            firstName: '',
+            lastName: '',
+            email: ''
+        },
+        companyDetails: {
+            companyName: '',
+            description: '',
+            webSite: '',
+            address: '',
+            logo: null,
+            activity: '',
+        }
+    }),
+
+    actions: {
+        updatePersonalDetails(data: Partial<PersonalDetails>) {
+            this.personalDetails = {...this.personalDetails, ...data}
+        },
+
+        updateCompanyDetails(data: Partial<CompanyDetails>) {
+            this.companyDetails = {...this.companyDetails, ...data}
+        },
+
+        resetOnboarding() {
+            this.personalDetails = {
+                photo: null,
+                firstName: '',
+                lastName: '',
+                email: ''
+            }
+            this.companyDetails = {
+                companyName: '',
+                description: '',
+                webSite: '',
+                address: '',
+                logo: null,
+                activity: '',
+            }
+        }
     },
-    companyDetails: {
-      companyName: '',
-      industry: '',
-      size: ''
+
+    getters: {
+        isPersonalDetailsComplete(): boolean {
+            return !!(
+                this.personalDetails.firstName &&
+                this.personalDetails.lastName &&
+                this.personalDetails.email
+            )
+        },
+
+        isCompanyDetailsComplete(): boolean {
+            return !!(
+                this.companyDetails.companyName &&
+                    this.companyDetails.description &&
+                    this.companyDetails.webSite &&
+                    this.companyDetails.address &&
+                    this.companyDetails.logo &&
+                    this.companyDetails.activity
+            )
+        },
+
+        isOnboardingComplete(): boolean {
+            return this.isPersonalDetailsComplete && this.isCompanyDetailsComplete
+        }
     }
-  }),
-
-  actions: {
-    updatePersonalDetails(data: Partial<PersonalDetails>) {
-      this.personalDetails = { ...this.personalDetails, ...data }
-    },
-
-    updateCompanyDetails(data: Partial<CompanyDetails>) {
-      this.companyDetails = { ...this.companyDetails, ...data }
-    },
-
-    resetOnboarding() {
-      this.personalDetails = {
-        photo: '',
-        firstName: '',
-        lastName: '',
-        email: ''
-      }
-      this.companyDetails = {
-        companyName: '',
-        industry: '',
-        size: ''
-      }
-    }
-  },
-
-  getters: {
-    isPersonalDetailsComplete(): boolean {
-      return !!(
-        this.personalDetails.firstName &&
-        this.personalDetails.lastName &&
-        this.personalDetails.email
-      )
-    },
-
-    isCompanyDetailsComplete(): boolean {
-      return !!(
-        this.companyDetails.companyName &&
-        this.companyDetails.industry &&
-        this.companyDetails.size
-      )
-    },
-
-    isOnboardingComplete(): boolean {
-      return this.isPersonalDetailsComplete && this.isCompanyDetailsComplete
-    }
-  }
 })

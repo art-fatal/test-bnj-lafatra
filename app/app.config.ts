@@ -25,6 +25,13 @@ export default defineAppConfig({
             defaultVariants: {
                 size: 'lg'
             }
+        },
+        pageCard: {
+            slots: {
+                container: 'gap-6',
+                title: 'text-2xl font-bold font-sans text-gray-900',
+                header: 'mb-2'
+            }
         }
     }
 })
