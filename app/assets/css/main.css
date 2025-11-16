@@ -15,11 +15,11 @@
     --color-blue-950: #00141E;
 }
 
-* {
-    font-family: 'DM Sans', sans-serif;
-}
-
 body {
     background-color: #F9FAFB;
     font-family: 'DM Sans', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
 }

@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['DM Sans', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     }
   },
