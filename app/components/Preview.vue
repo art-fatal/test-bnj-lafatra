@@ -54,7 +54,7 @@ const items: NavigationMenuItem[][] = [
     >
       <UDashboardSidebar
           :ui="{
-            body: 'p-0 px-1.5',
+            body: 'pb-0 pt-4 px-1.5',
             footer: 'border-t border-default',
             root: 'min-h-auto min-w-[140px] w-[140px]'
           }"
@@ -74,21 +74,32 @@ const items: NavigationMenuItem[][] = [
                 variant="ghost"
                 block
                 :square="collapsed"
-                class="data-[state=open]:bg-elevated"
-                :class="[!collapsed && 'py-2']"
+                class="bg-[#F9FAFB]"
+                :class="[!collapsed && 'py-1']"
                 :ui="{
-                  trailingIcon: 'text-dimmed'
+                  trailingIcon: 'size-3'
                 }"
             >
               <UAvatar
                   size="xs"
                   :ui="
                     {
-                      root: 'rounded-[2.67px]',
+                      root: 'bg-white size-4 rounded-[2.67px] shadow',
                     }
                   "
               />
-              <USkeleton class="h-[0.315rem] w-[250px]"/>
+              <USkeleton class="h-[0.315rem] w-[250px] bg-[#EAECF0]"/>
+              <UButton
+                icon="i-lucide-settings"
+                size="xs"
+                color="neutral"
+                variant="ghost"
+                :ui="{
+                  base: 'px-0',
+                  leadingIcon: 'size-3',
+                  trailingIcon: 'size-3'
+                }"
+                />
             </UButton>
           </UDropdownMenu>
 
