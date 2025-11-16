@@ -46,7 +46,7 @@ const initials = computed(() => getInitials(props.fullName))
 
 <template>
   <UFileUpload v-slot="{ open, removeFile }" v-model="avatar" accept="image/*">
-    <div class="flex flex-row items-center gap-8">
+    <div class="flex !flex-row items-center gap-8">
       <UAvatar
           size="3xl"
           :src="avatar ? createObjectUrl(avatar) : undefined"
