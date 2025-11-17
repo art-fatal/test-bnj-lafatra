@@ -3,18 +3,19 @@ import type {StepperItem} from '@nuxt/ui'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const items = ref<StepperItem[]>([
   {
-    title: 'Faisons connaissance',
+    title: t('welcome.personalDetails.title'),
     path: '/welcome/personal-details',
   },
   {
-    title: 'Creez votre espace de travail',
+    title: t('welcome.companyDetails.title'),
     path: '/welcome/company-details',
   },
   {
-    title: 'Pour mieux vous connaître',
+    title: t('welcome.getToKnow.title'),
     path: '/welcome/get-to-know',
   }
 ])
