@@ -10,28 +10,6 @@ export interface EnrichedCompanyInfo extends CompanyInfo {
   address?: string
 }
 
-interface HunterCompanyData {
-  name: string
-  domain: string
-  description?: string
-  location?: string
-  category?: {
-    sector?: string
-    industryGroup?: string
-    industry?: string
-    subIndustry?: string
-  }
-  geo?: {
-    streetAddress?: string
-    city?: string
-    postalCode?: string
-    state?: string
-    stateCode?: string
-    country?: string
-    countryCode?: string
-  }
-}
-
 export function extractCompanyInfoFromEmail(email: string): CompanyInfo | null {
   if (!email || !email.includes('@')) {
     return null
@@ -80,57 +58,19 @@ export function isProfessionalEmail(email: string): boolean {
 }
 
 export async function enrichCompanyInfoFromHunter(
-  domain: string,
-  apiKey?: string
+  domain: string
 ): Promise<EnrichedCompanyInfo | null> {
   try {
-    const key = apiKey || useRuntimeConfig().public.hunterApiKey
+    const response = await $fetch('/api/company/enrich', {
+      method: 'POST',
+      body: {
+        domain
+      }
+    })
 
-    const response = await fetch(
-      `https://api.hunter.io/v2/companies/find?domain=${domain}&api_key=${key}`
-    )
-
-    if (!response.ok) {
-      console.warn('Hunter.io API error:', response.status)
-      return null
-    }
-
-    const data = await response.json()
-
-    if (!data.data) {
-      return null
-    }
-
-    const companyData: HunterCompanyData = data.data
-
-    let address = ''
-    if (companyData.location) {
-      address = companyData.location
-    } else if (companyData.geo) {
-      const parts = [
-        companyData.geo.streetAddress,
-        companyData.geo.postalCode,
-        companyData.geo.city,
-        companyData.geo.state,
-        companyData.geo.country
-      ].filter(Boolean)
-      address = parts.join(', ')
-    }
-
-    const activity = companyData.category?.sector ||
-                     companyData.category?.industry ||
-                     companyData.category?.industryGroup
-
-    return {
-      companyName: companyData.name || domain.split('.')[0] || '',
-      webSite: domain,
-      domain: domain.split('.')[0] || '',
-      description: companyData.description,
-      activity: activity,
-      address: address || undefined
-    }
+    return response as EnrichedCompanyInfo | null
   } catch (error) {
-    console.error('Error fetching company info from Hunter.io:', error)
+    console.error('Error fetching company info from server:', error)
     return null
   }
 }
