@@ -73,7 +73,6 @@ const items: NavigationMenuItem[][] = [
               size="xs"
               :ui="{
                 root: 'py-1',
-                content: collapsed ? 'w-40' : 'w-(--reka-dropdown-menu-trigger-width)'
               }"
           >
             <UButton
@@ -102,10 +101,11 @@ const items: NavigationMenuItem[][] = [
                       <img :src="EntrepriseIcon" alt="Entreprise" class="w-2.5 h-2.5"/>
                     </template>
                   </UAvatar>
-                  <USkeleton v-if="!companyName" class="h-[0.315rem] w-[250px] bg-[#EAECF0]"/>
+                  <USkeleton v-if="!companyName" class="h-[0.315rem] w-[50px] bg-[#EAECF0]"/>
                   <span v-else class="text-[7px] font-medium truncate max-w-[60px]">{{ companyName }}</span>
                 </div>
                 <UButton
+                    id="preview-company-details-button"
                     icon="i-lucide-settings"
                     size="xs"
                     color="neutral"
