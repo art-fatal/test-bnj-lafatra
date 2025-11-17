@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { getInitials } from '~/utils/initials'
 
+const { t } = useI18n()
+
 interface Props {
   modelValue?: null | File | File[]
   fullName?: string
@@ -64,7 +66,7 @@ const initials = computed(() => getInitials(props.fullName))
       <div class="flex flex-col items-start justify-start gap-2">
         <div class="flex flex-row items-center justify-between gap-2">
           <UButton
-              :label="avatar ? 'Modifier la photo' : 'Ajouter une photo'"
+              :label="avatar ? t('upload.modifyPhoto') : t('upload.addPhoto')"
               icon="i-lucide-upload"
               color="neutral"
               variant="outline"
@@ -73,7 +75,7 @@ const initials = computed(() => getInitials(props.fullName))
               @click="open()"
           />
           <UButton
-              label="Supprimer"
+              :label="t('common.delete')"
               color="neutral"
               variant="outline"
               size="lg"

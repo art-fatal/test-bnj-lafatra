@@ -8,11 +8,12 @@ definePageMeta({
   layout: 'welcome'
 })
 
+const { t } = useI18n()
 const { createOptionalFileSchema } = useFileValidation()
 const { personalDetails } = useOnboardingAutoFill()
 
 const schema = z.object({
-  email: z.email('Veuillez entrer une adresse email valide'),
+  email: z.email(t('validation.email.invalid')),
   photo: createOptionalFileSchema()
 })
 
@@ -23,24 +24,24 @@ async function onSubmit() {
 
 <template>
   <UPageCard
-      title="Faisons connaissance"
+      :title="t('welcome.personalDetails.title')"
       variant="naked"
   >
     <UForm :schema="schema" :state="personalDetails" class="space-y-6" @submit="onSubmit">
-      <UFormField label="Photo de profil" class="font-poppins" name="photo">
+      <UFormField :label="t('welcome.personalDetails.profilePhoto')" class="font-poppins" name="photo">
         <Upload
             v-model="personalDetails.photo"
             :full-name="`${personalDetails.firstName} ${personalDetails.lastName}`"
-            description="au format *.png, *.jpeg, max 5mo"
+            :description="t('welcome.personalDetails.photoFormat')"
         />
       </UFormField>
-      <UFormField label="Prénom" name="firstName">
-        <UInput v-model="personalDetails.firstName" placeholder="Prénom"/>
+      <UFormField :label="t('welcome.personalDetails.firstName')" name="firstName">
+        <UInput v-model="personalDetails.firstName" :placeholder="t('welcome.personalDetails.firstNamePlaceholder')"/>
       </UFormField>
-      <UFormField label="Nom" name="lastName">
-        <UInput v-model="personalDetails.lastName" placeholder="Nom"/>
+      <UFormField :label="t('welcome.personalDetails.lastName')" name="lastName">
+        <UInput v-model="personalDetails.lastName" :placeholder="t('welcome.personalDetails.lastNamePlaceholder')"/>
       </UFormField>
-      <UFormField label="Adresse email" name="email">
+      <UFormField :label="t('welcome.personalDetails.email')" name="email">
         <UInput
             v-model="personalDetails.email"
             type="email"
@@ -49,7 +50,7 @@ async function onSubmit() {
         />
       </UFormField>
       <UButton type="submit" size="lg" class="w-full cursor-pointer">
-        Continuer
+        {{ t('common.continue') }}
       </UButton>
     </UForm>
   </UPageCard>

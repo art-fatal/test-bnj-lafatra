@@ -9,11 +9,12 @@ definePageMeta({
   layout: 'welcome'
 })
 
+const { t } = useI18n()
 const { createOptionalFileSchema } = useFileValidation()
 const { companyDetails, autoFillCompanyDetails } = useOnboardingAutoFill()
 
 const schema = z.object({
-  companyName: z.string().min(1, 'Le nom de l\'entreprise est requis'),
+  companyName: z.string().min(1, t('validation.company.nameRequired')),
   logo: createOptionalFileSchema(),
   description: z.string().optional(),
   webSite: z.string().optional(),
@@ -32,7 +33,7 @@ async function onSubmit() {
 
 <template>
   <UPageCard
-      title="Créez votre espace de travail"
+      :title="t('welcome.companyDetails.title')"
       variant="naked"
   >
     <template #header>
@@ -44,38 +45,34 @@ async function onSubmit() {
           icon="i-lucide-chevron-left"
           class="p-0"
       >
-        Retour
+        {{ t('common.back') }}
       </UButton>
     </template>
     <UForm :schema="schema" :state="companyDetails" class="space-y-6" @submit="onSubmit">
-      <UFormField label="Logo de l'entreprise" class="font-poppins" name="logo">
+      <UFormField :label="t('welcome.companyDetails.logo')" class="font-poppins" name="logo">
         <Upload
             v-model="companyDetails.logo"
             :useSvg="EntrepriseIcon"
             rounded-class="rounded-2xl"
-            description="au format *.png, *.jpeg"
+            :description="t('welcome.companyDetails.logoFormat')"
         />
       </UFormField>
-      <UFormField label="Nom de l'entreprise *" name="companyName">
-        <UInput v-model="companyDetails.companyName" placeholder="Renseignez le nom de votre entreprise"/>
+      <UFormField :label="t('welcome.companyDetails.companyName')" name="companyName">
+        <UInput v-model="companyDetails.companyName" :placeholder="t('welcome.companyDetails.companyNamePlaceholder')"/>
       </UFormField>
-      <UFormField label="Description de l'entreprise" name="description">
+      <UFormField :label="t('welcome.companyDetails.description')" name="description">
         <UTextarea
             v-model="companyDetails.description"
             class="w-full"
             :rows="5"
-            placeholder="Décrivez votre entreprise brièvement :
-
- - Histoire et chiffres clés
- - Produits ou services commercialisés
- - Culture et valeurs
-"/>
+            :placeholder="t('welcome.companyDetails.descriptionPlaceholder')"
+        />
       </UFormField>
-      <UFormField label="Site internet" name="webSite">
+      <UFormField :label="t('welcome.companyDetails.webSite')" name="webSite">
         <UFieldGroup class="w-full">
           <UInput
               v-model="companyDetails.webSite"
-              placeholder="votre-entreprise.com"
+              :placeholder="t('welcome.companyDetails.webSitePlaceholder')"
               :ui="{
                 base: 'pl-18.5',
                 leading: 'pointer-events-none pe-1 text-sm bg-gray-200 border-r-1 border-gray-300 font-poppins'
@@ -87,11 +84,11 @@ async function onSubmit() {
           </UInput>
         </UFieldGroup>
       </UFormField>
-      <UFormField label="Adresse du siège social" name="address">
-        <UInput v-model="companyDetails.address" placeholder="Renseignez l'adresse de votre entreprise"/>
+      <UFormField :label="t('welcome.companyDetails.address')" name="address">
+        <UInput v-model="companyDetails.address" :placeholder="t('welcome.companyDetails.addressPlaceholder')"/>
       </UFormField>
-      <UFormField label="Secteur d'activité" name="activity">
-        <UInput v-model="companyDetails.activity" placeholder="Renseignez le secteur d'activité de votre entreprise"/>
+      <UFormField :label="t('welcome.companyDetails.activity')" name="activity">
+        <UInput v-model="companyDetails.activity" :placeholder="t('welcome.companyDetails.activityPlaceholder')"/>
       </UFormField>
       <div class="flex flex-row gap-4">
         <UButton
@@ -101,10 +98,10 @@ async function onSubmit() {
             color="neutral"
             icon="i-lucide-arrow-left"
         >
-          Retour
+          {{ t('common.back') }}
         </UButton>
         <UButton type="submit" size="lg" class="w-full">
-          Continuer
+          {{ t('common.continue') }}
         </UButton>
       </div>
     </UForm>

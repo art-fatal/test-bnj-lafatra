@@ -1,0 +1,51 @@
+{
+  "common": {
+    "continue": "Continuer",
+    "back": "Retour",
+    "delete": "Supprimer"
+  },
+  "upload": {
+    "addPhoto": "Ajouter une photo",
+    "modifyPhoto": "Modifier la photo"
+  },
+  "welcome": {
+    "personalDetails": {
+      "title": "Faisons connaissance",
+      "profilePhoto": "Photo de profil",
+      "photoFormat": "au format *.png, *.jpeg, max 5mo",
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Prénom",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Nom",
+      "email": "Adresse email"
+    },
+    "companyDetails": {
+      "title": "Créez votre espace de travail",
+      "logo": "Logo de l'entreprise",
+      "logoFormat": "au format *.png, *.jpeg",
+      "companyName": "Nom de l'entreprise *",
+      "companyNamePlaceholder": "Renseignez le nom de votre entreprise",
+      "description": "Description de l'entreprise",
+      "descriptionPlaceholder": "Décrivez votre entreprise brièvement :\n\n - Histoire et chiffres clés\n - Produits ou services commercialisés\n - Culture et valeurs",
+      "webSite": "Site internet",
+      "webSitePlaceholder": "votre-entreprise.com",
+      "address": "Adresse du siège social",
+      "addressPlaceholder": "Renseignez l'adresse de votre entreprise",
+      "activity": "Secteur d'activité",
+      "activityPlaceholder": "Renseignez le secteur d'activité de votre entreprise"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Veuillez entrer une adresse email valide"
+    },
+    "company": {
+      "nameRequired": "Le nom de l'entreprise est requis"
+    },
+    "file": {
+      "tooLarge": "L'image est trop volumineuse. Veuillez choisir une image plus petite que {maxSize}.",
+      "invalidType": "Veuillez télécharger un fichier image valide (JPEG, PNG).",
+      "invalidDimensions": "Les dimensions de l'image sont invalides. Veuillez télécharger une image entre {minWidth}x{minHeight} et {maxWidth}x{maxHeight} pixels."
+    }
+  }
+}

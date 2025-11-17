@@ -40,7 +40,7 @@ definePageMeta({
       >
         Retour
       </UButton>
-      <UButton size="lg" class="w-full cursor-pointer">
+      <UButton size="lg" class="w-full cursor-pointer" disabled>
         Terminer
       </UButton>
     </div>

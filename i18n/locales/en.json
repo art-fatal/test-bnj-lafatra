@@ -1,0 +1,51 @@
+{
+  "common": {
+    "continue": "Continue",
+    "back": "Back",
+    "delete": "Delete"
+  },
+  "upload": {
+    "addPhoto": "Add photo",
+    "modifyPhoto": "Modify photo"
+  },
+  "welcome": {
+    "personalDetails": {
+      "title": "Let's get to know each other",
+      "profilePhoto": "Profile photo",
+      "photoFormat": "in *.png, *.jpeg format, max 5MB",
+      "firstName": "First name",
+      "firstNamePlaceholder": "First name",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Last name",
+      "email": "Email address"
+    },
+    "companyDetails": {
+      "title": "Create your workspace",
+      "logo": "Company logo",
+      "logoFormat": "in *.png, *.jpeg format",
+      "companyName": "Company name *",
+      "companyNamePlaceholder": "Enter your company name",
+      "description": "Company description",
+      "descriptionPlaceholder": "Briefly describe your company:\n\n - History and key figures\n - Products or services offered\n - Culture and values",
+      "webSite": "Website",
+      "webSitePlaceholder": "your-company.com",
+      "address": "Headquarters address",
+      "addressPlaceholder": "Enter your company address",
+      "activity": "Industry sector",
+      "activityPlaceholder": "Enter your company's industry sector"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Please enter a valid email address"
+    },
+    "company": {
+      "nameRequired": "Company name is required"
+    },
+    "file": {
+      "tooLarge": "The image is too large. Please choose an image smaller than {maxSize}.",
+      "invalidType": "Please upload a valid image file (JPEG, PNG).",
+      "invalidDimensions": "Image dimensions are invalid. Please upload an image between {minWidth}x{minHeight} and {maxWidth}x{maxHeight} pixels."
+    }
+  }
+}
