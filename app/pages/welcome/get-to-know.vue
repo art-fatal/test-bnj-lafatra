@@ -2,11 +2,13 @@
 definePageMeta({
   layout: 'welcome'
 })
+
+const { t } = useI18n()
 </script>
 
 <template>
   <UPageCard
-      title="Pour mieux vous connaitre"
+      :title="t('welcome.getToKnow.title')"
       variant="naked"
   >
     <template #header>
@@ -18,7 +20,7 @@ definePageMeta({
           icon="i-lucide-chevron-left"
           class="p-0"
       >
-        Retour
+        {{ t('common.back') }}
       </UButton>
     </template>
     <USkeleton class="h-12 w-12 rounded-full" />
@@ -38,10 +40,10 @@ definePageMeta({
           color="neutral"
           icon="i-lucide-arrow-left"
       >
-        Retour
+        {{ t('common.back') }}
       </UButton>
       <UButton size="lg" class="w-full cursor-pointer" disabled>
-        Terminer
+        {{ t('common.finish') }}
       </UButton>
     </div>
   </UPageCard>

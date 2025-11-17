@@ -2,7 +2,8 @@
   "common": {
     "continue": "Continuer",
     "back": "Retour",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "finish": "Terminer"
   },
   "upload": {
     "addPhoto": "Ajouter une photo",
@@ -33,6 +34,9 @@
       "addressPlaceholder": "Renseignez l'adresse de votre entreprise",
       "activity": "Secteur d'activité",
       "activityPlaceholder": "Renseignez le secteur d'activité de votre entreprise"
+    },
+    "getToKnow": {
+      "title": "Pour mieux vous connaitre"
     }
   },
   "validation": {
@@ -40,7 +44,8 @@
       "invalid": "Veuillez entrer une adresse email valide"
     },
     "company": {
-      "nameRequired": "Le nom de l'entreprise est requis"
+      "nameRequired": "Le nom de l'entreprise est requis",
+      "invalidWebsite": "Veuillez entrer une URL de site web valide (ex: exemple.com)"
     },
     "file": {
       "tooLarge": "L'image est trop volumineuse. Veuillez choisir une image plus petite que {maxSize}.",

@@ -17,7 +17,12 @@ const schema = z.object({
   companyName: z.string().min(1, t('validation.company.nameRequired')),
   logo: createOptionalFileSchema(),
   description: z.string().optional(),
-  webSite: z.string().optional(),
+  webSite: z.string()
+    .optional()
+    .refine(
+      (val) => !val || /^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/.test(val),
+      { message: t('validation.company.invalidWebsite') }
+    ),
   address: z.string().optional(),
   activity: z.string().optional()
 })

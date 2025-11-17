@@ -2,7 +2,8 @@
   "common": {
     "continue": "Continue",
     "back": "Back",
-    "delete": "Delete"
+    "delete": "Delete",
+    "finish": "Finish"
   },
   "upload": {
     "addPhoto": "Add photo",
@@ -33,6 +34,9 @@
       "addressPlaceholder": "Enter your company address",
       "activity": "Industry sector",
       "activityPlaceholder": "Enter your company's industry sector"
+    },
+    "getToKnow": {
+      "title": "Pour mieux vous connaitre"
     }
   },
   "validation": {
@@ -40,7 +44,8 @@
       "invalid": "Please enter a valid email address"
     },
     "company": {
-      "nameRequired": "Company name is required"
+      "nameRequired": "Company name is required",
+      "invalidWebsite": "Please enter a valid website URL (e.g., example.com)"
     },
     "file": {
       "tooLarge": "The image is too large. Please choose an image smaller than {maxSize}.",
