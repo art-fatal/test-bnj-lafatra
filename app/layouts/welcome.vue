@@ -39,8 +39,8 @@ const handleStepClick = (index: number) => {
     <AppHeader/>
 
     <div class="section">
-      <UContainer class="!px-32 py-16">
-        <div class="px-20 py-10 border-1 border-gray-200 flex flex-col rounded-2xl bg-white gap-4">
+      <UContainer class="!px-8 lg:!px-16 xl:!px-32 py-8 lg:py-16">
+        <div class="px-6 lg:px-12 xl:px-20 py-6 lg:py-10 border-1 border-gray-200 flex flex-col rounded-2xl bg-white gap-4">
           <UStepper
               :model-value="currentStep"
               :items="items"
@@ -53,11 +53,11 @@ const handleStepClick = (index: number) => {
               @update:model-value="handleStepClick"
           />
 
-        <div class="flex flex-row gap-20 items-center">
-          <div class="w-full">
+        <div class="flex flex-col xl:flex-row gap-8 xl:gap-20 items-center justify-center">
+          <div class="w-full max-w-[500px]">
             <slot/>
           </div>
-          <div class="w-full h-[480px]">
+          <div class="w-full xl:w-auto xl:min-w-[407px] h-[480px] hidden lg:block">
             <Preview />
           </div>
         </div>

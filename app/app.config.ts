@@ -28,7 +28,7 @@ export default defineAppConfig({
         },
         pageCard: {
             slots: {
-                container: 'gap-6',
+                container: 'gap-6 w-full',
                 title: 'text-2xl font-bold font-sans text-gray-900',
                 header: 'mb-2'
             }

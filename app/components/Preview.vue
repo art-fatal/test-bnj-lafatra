@@ -54,7 +54,7 @@ const items: NavigationMenuItem[][] = [
 </script>
 
 <template>
-  <div id="preview-container" class="h-[480px] w-[407px] relative shadow-lg overflow-visible"
+  <div id="preview-container" class="h-[480px] w-full xl:w-[407px] relative shadow-lg overflow-visible"
        :class="highlited ? 'has-hihghlited' : ''">
     <UDashboardGroup
         unit="rem"
@@ -199,8 +199,10 @@ const items: NavigationMenuItem[][] = [
   height: 16px !important;
 }
 
-#preview-container.has-hihghlited {
-  transform: translateX(65px);
+@media (min-width: 1280px) {
+  #preview-container.has-hihghlited {
+    transform: translateX(65px);
+  }
 }
 
 .highlited {
