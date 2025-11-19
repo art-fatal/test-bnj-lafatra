@@ -41,7 +41,7 @@ async function onSubmit() {
       <UFormField :label="t('welcome.personalDetails.lastName')" name="lastName">
         <UInput v-model="personalDetails.lastName" :placeholder="t('welcome.personalDetails.lastNamePlaceholder')"/>
       </UFormField>
-      <UFormField :label="t('welcome.personalDetails.email')" name="email">
+      <UFormField :label="t('welcome.personalDetails.email')" name="email" required>
         <UInput
             v-model="personalDetails.email"
             type="email"
