@@ -36,7 +36,78 @@
       "activityPlaceholder": "Enter your company's industry sector"
     },
     "getToKnow": {
-      "title": "Pour mieux vous connaitre"
+      "title": "To get to know you better",
+      "companySize": "Company size",
+      "companySizePlaceholder": "Select your company size",
+      "role": "Your role in the company",
+      "rolePlaceholder": "Select your role",
+      "linkedinUrl": "LinkedIn URL",
+      "linkedinUrlPlaceholder": "linkedin.com/in/your-profile",
+      "recruitmentPlan": "How many people do you plan to recruit?",
+      "recruitmentPlanPlaceholder": "Select an option",
+      "recruitmentExperience": "What is your recruitment experience?",
+      "recruitmentExperiencePlaceholder": "Select your experience level",
+      "whyWink": "Why do you want to use Wink?",
+      "whyWinkPlaceholder": "Share your motivations and goals...",
+      "goals": "Main goals",
+      "goalsPlaceholder": "Select your goals",
+      "discovery": "How did you discover our platform?",
+      "discoveryPlaceholder": "Select an option",
+      "currentTools": "What recruitment tools do you currently use?",
+      "currentToolsPlaceholder": "Select your tools",
+      "sizes": {
+        "freelance": "Freelance / Self-employed",
+        "small": "2-10 employees",
+        "medium": "11-50 employees",
+        "large": "51-200 employees",
+        "enterprise": "200+ employees"
+      },
+      "roles": {
+        "founder": "Founder / CEO",
+        "manager": "Manager / Team Lead",
+        "hr": "HR / Recruitment",
+        "employee": "Employee",
+        "other": "Other"
+      },
+      "recruitmentPlans": {
+        "none": "No recruitment planned",
+        "few": "1-5 people",
+        "moderate": "6-10 people",
+        "many": "11-20 people",
+        "massive": "More than 20 people"
+      },
+      "experiences": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced",
+        "expert": "Expert"
+      },
+      "goalsList": {
+        "teamManagement": "Team management",
+        "projectTracking": "Project tracking",
+        "hrManagement": "HR management",
+        "internalCommunication": "Internal communication",
+        "collaboration": "Collaboration",
+        "other": "Other"
+      },
+      "discoveries": {
+        "googleSearch": "Google search",
+        "socialMedia": "Social media",
+        "recommendation": "Recommendation",
+        "advertising": "Advertising",
+        "other": "Other"
+      },
+      "tools": {
+        "linkedinRecruiter": "LinkedIn Recruiter",
+        "indeed": "Indeed",
+        "welcomeToTheJungle": "Welcome to the Jungle",
+        "jobTeaser": "JobTeaser",
+        "poleEmploi": "Pôle Emploi",
+        "ats": "ATS (Applicant Tracking System)",
+        "socialNetworks": "Social networks",
+        "none": "No specific tool",
+        "other": "Other"
+      }
     }
   },
   "validation": {
@@ -51,6 +122,13 @@
       "tooLarge": "The image is too large. Please choose an image smaller than {maxSize}.",
       "invalidType": "Please upload a valid image file (JPEG, PNG).",
       "invalidDimensions": "Image dimensions are invalid. Please upload an image between {minWidth}x{minHeight} and {maxWidth}x{maxHeight} pixels."
+    },
+    "getToKnow": {
+      "companySizeRequired": "Please select your company size",
+      "roleRequired": "Please select your role",
+      "invalidLinkedin": "Please enter a valid LinkedIn URL",
+      "recruitmentExperienceRequired": "Please select your experience level",
+      "whyWinkRequired": "Please tell us why you want to use Wink"
     }
   }
 }

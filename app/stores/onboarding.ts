@@ -16,9 +16,22 @@ interface CompanyDetails {
     activity: string
 }
 
+interface GetToKnowDetails {
+    companySize: string
+    role: string
+    linkedinUrl: string
+    recruitmentPlan: string
+    recruitmentExperience: string
+    whyWink: string
+    goals: string[]
+    discovery: string
+    currentTools: string[]
+}
+
 interface OnboardingState {
     personalDetails: PersonalDetails
     companyDetails: CompanyDetails
+    getToKnowDetails: GetToKnowDetails
 }
 
 export const useOnboardingStore = defineStore('onboarding', {
@@ -36,6 +49,17 @@ export const useOnboardingStore = defineStore('onboarding', {
             address: '',
             logo: null,
             activity: '',
+        },
+        getToKnowDetails: {
+            companySize: '',
+            role: '',
+            linkedinUrl: '',
+            recruitmentPlan: '',
+            recruitmentExperience: '',
+            whyWink: '',
+            goals: [],
+            discovery: '',
+            currentTools: []
         }
     }),
 
@@ -46,6 +70,10 @@ export const useOnboardingStore = defineStore('onboarding', {
 
         updateCompanyDetails(data: Partial<CompanyDetails>) {
             this.companyDetails = {...this.companyDetails, ...data}
+        },
+
+        updateGetToKnowDetails(data: Partial<GetToKnowDetails>) {
+            this.getToKnowDetails = {...this.getToKnowDetails, ...data}
         },
 
         resetOnboarding() {
@@ -62,6 +90,17 @@ export const useOnboardingStore = defineStore('onboarding', {
                 address: '',
                 logo: null,
                 activity: '',
+            }
+            this.getToKnowDetails = {
+                companySize: '',
+                role: '',
+                linkedinUrl: '',
+                recruitmentPlan: '',
+                recruitmentExperience: '',
+                whyWink: '',
+                goals: [],
+                discovery: '',
+                currentTools: []
             }
         }
     },
@@ -86,8 +125,17 @@ export const useOnboardingStore = defineStore('onboarding', {
             )
         },
 
+        isGetToKnowComplete(): boolean {
+            return !!(
+                this.getToKnowDetails.companySize &&
+                this.getToKnowDetails.role &&
+                this.getToKnowDetails.recruitmentExperience &&
+                this.getToKnowDetails.whyWink
+            )
+        },
+
         isOnboardingComplete(): boolean {
-            return this.isPersonalDetailsComplete && this.isCompanyDetailsComplete
+            return this.isPersonalDetailsComplete && this.isCompanyDetailsComplete && this.isGetToKnowComplete
         }
     }
 })

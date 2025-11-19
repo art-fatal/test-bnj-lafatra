@@ -20,11 +20,28 @@ export default defineAppConfig({
         },
         input: {
             slots: {
-              root: 'w-full'
+                root: 'w-full',
+            },
+            variants:{
+                size: {
+                    lg: {
+                        leadingIcon: 'size-4',
+                    }
+                }
             },
             defaultVariants: {
                 size: 'lg'
             }
+        },
+        select: {
+            slots: {
+                base: 'w-full'
+            },
+        },
+        selectMenu: {
+            slots: {
+                base: 'w-full'
+            },
         },
         pageCard: {
             slots: {
